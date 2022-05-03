@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+
+<div class="container2">
+  <div class="profilecontent1">
+    <div class="profilepic" style="background-image: url(<%= user.avatar %>);"></div>
+      <h1 id=Profileheading><%= user.firstName + " " + user.lastName  %></h1>
+    <div class="button-container1">
+      <button id=PhotoCount>
+        <%= user.email %>
+        <h4>Email</h4>
+      </button>
+      <button id=Followers>
+        Contact
+        <h4><%= user.phoneNo %></h4>
+      </button>
+    </div>
+  </div>
+  <div class=contentcontainer1>
+    <h3>Rooms</h3>
+    <!-- <div class=stories>
+      <% rooms.forEach(function(room) { %>
+        <a href="/rooms/<%= room.id %>">
+          <img class=story src="<%= room.image %>"></img>
+        </a>
+      <% }); %>
+    </div> -->
+  </div>
+</div>
+
+
+<% include ../partials/footer %>

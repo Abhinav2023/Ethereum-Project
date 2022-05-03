@@ -1,0 +1,68 @@
+<% include ./partials/header %>
+<div class="registerWrapper">
+  <div class="ui main registerContainer segment">
+    <div class="ui huge header">Enter Your Details</div>  
+    <form action="/" class="ui form" method="POST" style="background: none;">
+        <div class="field">
+            <label>Number of Nodes</label>
+            <input type="number" name="number" placeholder="1">
+        </div>
+        <div class="field">
+            <label>Mode</label>
+            <div style="display: flex; justify-content:space-around; ">
+              <div>
+                <input type="radio" name="mode" value="light">Light
+              </div>
+              <div>
+                <input type="radio" name="mode" value="full">Full
+              </div>
+             
+            </div>
+        </div>
+        <div class="field">
+          <label>Raspberry 3 model B</label>
+          <div style="display: flex; justify-content:space-around; ">
+            <div>
+              <input type="radio" name="Raspberry3" value="1">1
+            </div>
+            <div>
+              <input type="radio" name="Raspberry3" value="2">2
+            </div>
+            <div>
+              <input type="radio" name="Raspberry3" value="3">3
+            </div>
+            <div>
+              <input type="radio" name="Raspberry3" value="4">4
+            </div>
+           
+          </div>
+        <div class="field">
+          <label>Raspberry 4 model B</label>
+          <div style="display: flex; justify-content:space-around; ">
+            <div>
+              <input type="radio" name="Raspberry4" value="1">1
+            </div>
+            <div>
+              <input type="radio" name="Raspberry4" value="2">2
+            </div>
+           
+          </div>
+       </div>
+       <div class="field">
+        Android <input type="radio" name="Android" value="1">
+       
+     </div>
+        <div class="field">
+            <label>Any geth flags (followed by spaces)</label>
+            <textarea name="flags" rows="1" cols="50"></textarea>
+        </div>
+        <div class="field">
+          <label>Genesis File </label>
+          <textarea name="genesis" required rows="8" cols="50"></textarea>
+        </div>
+        <input class="ui violet big basic button" type="submit">
+    </form>
+</div>
+</div>
+
+<% include ./partials/footer %>

@@ -1,0 +1,45 @@
+
+		<% include ./partials/header %>
+		<div class="registerWrapper">
+			<div class="registerContainer">
+				<div class="form-title">Sign up!</div>
+				<form action="/register" method="post">
+				  <div class="form-group">
+					<label for="username">Username</label>
+					<input type="text" name="username" class="form-control" id="email" placeholder="username" ></input>
+				  </div>
+				  <div class="form-group">
+					  <label for="password">Password</label>
+					  <input type="password" name="password" class="form-control" id="email" placeholder="password" ></input>
+					</div>
+				  <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+					<div style="flex: 1;">
+					  <label for="firstName">First Name</label>
+					  <input type="text" class="form-control" id="fname" name="firstName"></input>
+					 </div>
+					<div style="flex: 1;">
+					  <label for="lastName">Last Name</label>
+					  <input type="text" class="form-control" id="lname" name="lastName"></input>
+					</div>
+				   </div>
+				  <div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" class="form-control" id="email" name="email"></input>
+				  </div>
+				  <div class="form-group">
+					<button class="btn btn-outline-secondary signupbtn" >Sign up!</button>
+					  <div class="separate">
+						  <div>
+							  <a href="/login">Already have an account?</a>
+						  </div>
+						  <div>
+							  <a href="/">Back</a>
+						  </div>
+					  </div>
+				  </div>
+				</form>
+			  </div>
+		</div>
+		
+		<% include ./partials/footer %>
+
