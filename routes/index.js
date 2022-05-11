@@ -11,14 +11,28 @@ var middlewareObj=require("../middleware")
 var fs = require('fs');
 
 router.get("/", function(req, res){
+  if(req.isAuthenticated()){
     res.render("landing");
+  }else res.redirect("/login");
 });
 
-router.post("/",function(req,res){
+router.post("/",middlewareObj.isLoggedIn,function(req,res){
   var number = req.body.number.toString();
   var mode = req.body.mode.toString();
   var flags = req.body.flags.toString();
   var genesis = req.body.genesis.toString();
+  User.findOne({username: req.user.username}, function(err, user){
+    if(err){
+      return console.log(err);
+    }
+    user.setting = {
+      number_of_nodes : number,
+      mode: mode,
+      genesis: genesis,
+      flags: flags,
+    }
+    user.save();
+  })
   var finalString = "number of nodes="+number + "\n" + mode + "\n" + flags + "\n" ;
   fs.writeFile("/Users/lt/Desktop/block.txt",finalString, function(err) {
       if(err) {
@@ -30,8 +44,67 @@ router.post("/",function(req,res){
           }
          
           console.log("The file was saved!");
-          res.redirect("http://localhost:3000");
+          setTimeout(function(){
+            res.redirect("http://localhost:3000");
+          }, 5000)
       });
+      fs.readFile("/Users/lt/Desktop/genesis.json", function(err,data){
+        if(err) return console.log(err);
+        const genesis_data = JSON.parse(data);
+        console.log("Hello");
+        console.log(genesis_data);
+        console.log(genesis_data.gasLimit);
+      })
+  });
+});
+
+router.get("/smart_contract", function(req, res){
+  if(req.isAuthenticated()){
+    res.render("smart_contract");
+  }else res.redirect("/login");
+});
+
+router.post("/smart_contract",middlewareObj.isLoggedIn,function(req,res){
+  var smart_contract = req.body.smart_contract.toString();
+  var finalString = smart_contract + "\n" ;
+  fs.writeFile("/Users/lt/Desktop/Hello.sol",finalString, function(err) {
+      if(err) {
+          return console.log(err);
+      }
+      console.log("The smart_contract is deployed!");
+      setTimeout(function(){
+        res.redirect("/");
+      }, 5000)
+  });
+});
+
+router.post("/previousSelection",function(req,res){
+  var number = req.user.setting.number_of_nodes;
+  var mode = req.user.setting.mode;
+  var flags = req.user.setting.flags;
+  var genesis = req.user.setting.genesis;
+  var finalString = "number of nodes="+number + "\n" + mode + "\n" + flags + "\n" ;
+  fs.writeFile("/Users/lt/Desktop/block.txt",finalString, function(err) {
+      if(err) {
+          return console.log(err);
+      }
+      fs.writeFile("/Users/lt/Desktop/genesis.json",genesis, function(err1) {
+          if(err1) {
+              return console.log(err1);
+          }
+         
+          console.log("The file was saved!");
+          setTimeout(function(){
+            res.redirect("http://localhost:3000");
+          }, 5000)
+      });
+      fs.readFile("/Users/lt/Desktop/genesis.json", function(err,data){
+        if(err) return console.log(err);
+        const genesis_data = JSON.parse(data);
+        console.log("Hello");
+        console.log(genesis_data);
+        console.log(genesis_data.gasLimit);
+      })
   });
 });
 
