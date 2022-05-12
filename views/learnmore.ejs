@@ -1,7 +1,39 @@
 <% include ./partials/header %>
-
-<div class="faq" style="height: 1000px;">
-  
+<div class="registerWrapper" style="height: 525px">
+  <div class="ui main registerContainer segment">
+    <table class="ui celled table">
+      <thead>
+        <tr><th>Fields</th>
+        <th>Value</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td data-label="Name">Number Of Nodes Running in Server</td>
+          <td data-label="Age"><%= data.number_of_nodes %></td>
+        </tr>
+        <tr>
+          <td data-label="Name">Number Of Nodes Running in Remote Server</td>
+          <td data-label="Age">0</td>
+        </tr>
+        <tr>
+          <td data-label="Name">Mode</td>
+          <td data-label="Age"><%= data.mode %></td>
+        </tr>
+        <tr>
+          <td data-label="Name">Network Id</td>
+          <td data-label="Age"><%= genesis_data.config.chainId %></td>
+        </tr>
+        <tr>
+          <td data-label="Name">Difficulty</td>
+          <td data-label="Age"><%= genesis_data.difficulty %></td>
+        </tr>
+        <tr>
+          <td data-label="Name">Gas Limit</td>
+          <td data-label="Age"><%= genesis_data.gasLimit %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <% include ./partials/footer %>

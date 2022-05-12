@@ -9,7 +9,7 @@ var express          = require("express"),
     indexRoutes      = require("./routes/index"),
     flash            = require("connect-flash")
 
-var url="mongodb+srv://<Username>:<password>@cluster0.urbmq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+var url="mongodb+srv://Abhinav:chirano%401234@cluster0.urbmq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 mongoose.connect(url,{ useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");

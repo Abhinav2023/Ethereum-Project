@@ -45,16 +45,9 @@ router.post("/",middlewareObj.isLoggedIn,function(req,res){
          
           console.log("The file was saved!");
           setTimeout(function(){
-            res.redirect("http://localhost:3000");
+            res.redirect("/learnmore");
           }, 5000)
       });
-      fs.readFile("/Users/lt/Desktop/genesis.json", function(err,data){
-        if(err) return console.log(err);
-        const genesis_data = JSON.parse(data);
-        console.log("Hello");
-        console.log(genesis_data);
-        console.log(genesis_data.gasLimit);
-      })
   });
 });
 
@@ -95,16 +88,9 @@ router.post("/previousSelection",function(req,res){
          
           console.log("The file was saved!");
           setTimeout(function(){
-            res.redirect("http://localhost:3000");
+            res.redirect("learnmore");
           }, 5000)
       });
-      fs.readFile("/Users/lt/Desktop/genesis.json", function(err,data){
-        if(err) return console.log(err);
-        const genesis_data = JSON.parse(data);
-        console.log("Hello");
-        console.log(genesis_data);
-        console.log(genesis_data.gasLimit);
-      })
   });
 });
 
@@ -113,8 +99,30 @@ router.get("/register", function(req, res){
    res.render("register", {page: 'register'}); 
 });
 
-router.get("/learnmore", (req,res)=>{
-	res.render("learnmore",{page: 'learnmore'});
+router.get("/learnmore",middlewareObj.isLoggedIn, (req,res)=>{
+  User.findOne({username: req.user.username},async function(err,user){
+    if(err) return console.log(err);
+    if(user.setting.number_of_nodes){
+      let data = {
+        ...user.setting,
+      }
+      let genesis_data;
+      fs.readFile("/Users/lt/Desktop/genesis.json", function(err,data){
+        if(err) return console.log(err);
+        genesis_data = JSON.parse(data);
+        console.log(genesis_data);
+      })
+      setTimeout(function(){
+        console.log(genesis_data);
+      res.render("learnmore",{page: 'learnmore', data: data, genesis_data: genesis_data});
+      },2000); 
+      
+    }else {
+      req.flash("error","You must create a private blockchain first");
+      res.redirect("/");
+    }
+  })
+	
 })
 
 router.get("/feedback", (req,res)=>{

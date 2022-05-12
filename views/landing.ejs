@@ -3,10 +3,10 @@
   <div class="ui main registerContainer segment">
     <% if(currentUser.setting.number_of_nodes){ %>
       <form action="/previousSelection" class="ui form" method="POST" style="background: none;">
-        <button class="ui violet bug basic button">Use Your Previous Selections</button>
+        <button class="ui violet bug basic button">Use Previous Configuration</button>
       </form>
     <%}%>
-    <div class="ui huge header">Enter Your Details</div>  
+    <div class="ui huge header">Configurations</div>  
     <form action="/" class="ui form" method="POST" style="background: none;">
         <div class="field">
             <label>Number of Nodes</label>
@@ -26,9 +26,6 @@
         <div class="field">
           <label>Select Geth Flags</label>
           <div style="display: flex; padding-bottom: 10px; flex-direction: column; ">
-            <div> 
-              <input type="checkbox" name="flags" value="default"/> Use Default Flags
-            </div>
             <div>
               <input type="checkbox" name="flags" value="flag1"/> Flag1
             </div>

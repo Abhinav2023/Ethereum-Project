@@ -34,6 +34,11 @@
           <ul class="nav navbar-nav">
             <li class="<%= typeof page !=='undefined' && page ==='smart_contract' ? 'active' : ''%>" ><a href="/smart_contract">Deploy Smart Contract</a></li>
           </ul>
+          <% if(currentUser && currentUser.setting.number_of_nodes){ %>
+            <ul class="nav navbar-nav">
+                <li><a href="http://localhost:3000" target="_blank">Eth-netstats</a></li>
+              </ul>
+            <%}%>
           <ul class="nav navbar-nav navbar-right">
               <% if(!currentUser){ %>
                   <li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>"><a href="/login">Login</a></li>
